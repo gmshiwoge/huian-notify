@@ -1,11 +1,12 @@
 {
   "domain": "huian_notify",
   "name": "Huian Notify",
-  "codeowners": ["@yourusername"],
+  "codeowners": ["@gmshiwoge"],
   "config_flow": true,
-  "documentation": "https://github.com/yourusername/huian_notify",
+  "documentation": "https://github.com/gmshiwoge/huian-notify",
+  "integration_type": "service",
   "iot_class": "cloud_push",
-  "issue_tracker": "https://github.com/yourusername/huian_notify/issues",
+  "issue_tracker": "https://github.com/gmshiwoge/huian-notify/issues",
   "requirements": ["requests>=2.31.0"],
-  "version": "2.1.0"
+  "version": "2.1.1"
 }
