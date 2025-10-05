@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "添加汇安推送设备",
+        "description": "输入您的设备Registration ID\n\n📱 在App的设置页面 > 通知 一栏可以找到并复制Registration ID",
+        "data": {
+          "registration_id": "Registration ID",
+          "production": "生产环境（发布版本请勾选）"
+        },
+        "data_description": {
+          "registration_id": "从App设置页面的'通知'一栏复制"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接到汇安推送，请检查Registration ID是否正确",
+      "invalid_format": "Registration ID格式无效",
+      "unknown": "发生未知错误"
+    },
+    "abort": {
+      "already_configured": "此设备已添加"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "修改汇安推送配置",
+        "description": "切换生产/开发环境",
+        "data": {
+          "production": "生产环境"
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add Huian Device",
+        "description": "Enter your device Registration ID\n\n📱 You can find and copy the Registration ID from:\nApp Settings > Notification",
+        "data": {
+          "registration_id": "Registration ID",
+          "production": "Production Environment (for release builds)"
+        },
+        "data_description": {
+          "registration_id": "Copy from App Settings > Notification section"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Huian, please check your Registration ID",
+      "invalid_format": "Invalid Registration ID format",
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "This device is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Modify Huian Configuration",
+        "description": "Switch between production and development environment",
+        "data": {
+          "production": "Production Environment"
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,11 @@
+{
+  "domain": "huian_notify",
+  "name": "Huian Notify",
+  "codeowners": ["@yourusername"],
+  "config_flow": true,
+  "documentation": "https://github.com/yourusername/huian_notify",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/yourusername/huian_notify/issues",
+  "requirements": ["requests>=2.31.0"],
+  "version": "2.1.0"
+}
