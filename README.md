@@ -2,7 +2,7 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
-Home Assistant integration for JPush (极光推送) push notifications.
+Home Assistant integration for JPush (hui an smart) push notifications.
 
 ## Features
 
