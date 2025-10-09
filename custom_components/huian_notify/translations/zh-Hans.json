@@ -19,7 +19,8 @@
       "unknown": "发生未知错误"
     },
     "abort": {
-      "already_configured": "此设备已添加"
+      "already_configured": "此设备已添加",
+      "no_options_available": "API 端点无可配置选项"
     }
   },
   "options": {

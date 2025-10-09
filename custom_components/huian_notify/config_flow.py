@@ -246,6 +246,11 @@ class HuianOptionsFlowHandler(config_entries.OptionsFlow):
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
         """Manage the options."""
+        # 检查是否是 API 端点配置
+        if self.config_entry.data.get("is_api_endpoint"):
+            # API 端点配置没有可配置的选项
+            return self.async_abort(reason="no_options_available")
+        
         if user_input is not None:
             # 更新配置（保留原有的app_key和master_secret）
             new_data = dict(self.config_entry.data)
