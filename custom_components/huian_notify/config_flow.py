@@ -189,7 +189,7 @@ class HuianConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             "Content-Type": "application/json",
         }
         
-        # 发送测试推送
+        # 发送测试推送（使用生产环境）
         payload = {
             "platform": ["ios"],
             "audience": {"registration_id": [registration_id]},
@@ -200,7 +200,7 @@ class HuianConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     "sound": "default",
                 }
             },
-            "options": {"apns_production": False},
+            "options": {"apns_production": True},  # 生产环境
         }
         
         try:
