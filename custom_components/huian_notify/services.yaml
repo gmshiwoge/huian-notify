@@ -1,0 +1,36 @@
+# Huian Notify Services
+# 定义 notify 服务的参数和描述
+
+# 注意：notify 服务是动态生成的（如 notify.iphone_65050）
+# 这个文件定义所有 notify 服务共用的参数模板
+
+notify:
+  name: 发送通知
+  description: 通过极光推送发送通知到 iOS 设备
+  fields:
+    message:
+      name: 消息内容
+      description: 推送通知的消息正文
+      required: true
+      example: "车库门已经打开10分钟了"
+      selector:
+        text:
+          multiline: true
+    
+    title:
+      name: 标题
+      description: 推送通知的标题
+      required: false
+      example: "车库门提醒"
+      selector:
+        text:
+    
+    data:
+      name: 额外数据
+      description: 自定义推送选项（角标、铃声等）
+      required: false
+      example: '{"badge": "+1", "sound": "default"}'
+      selector:
+        object:
+      advanced: true
+

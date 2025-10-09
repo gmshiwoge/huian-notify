@@ -12,7 +12,7 @@ CONF_PRODUCTION = "production"
 
 # 默认值
 DEFAULT_NAME = "Huian"
-DEFAULT_PRODUCTION = False
+DEFAULT_PRODUCTION = True  # 生产环境（可在 HA 配置中切换）
 
 # API配置
 HUIAN_API_URL = "https://api.jpush.cn/v3/push"
