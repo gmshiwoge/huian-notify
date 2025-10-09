@@ -187,21 +187,68 @@ class HuianNotifyRegisterView(HomeAssistantView):
         existing_entries = hass.config_entries.async_entries(DOMAIN)
         for entry in existing_entries:
             if entry.data.get(CONF_REGISTRATION_ID) == registration_id:
-                # 使用已存储的服务名
-                service_name = hass.data[DOMAIN].get(f"{entry.entry_id}_service_name")
-                if not service_name:
-                    # 如果没有存储的服务名，根据设备名称生成
-                    service_name = _generate_service_name(hass, entry, device_name, registration_id)
+                # 检查设备名称是否变化
+                old_device_name = entry.data.get("device_name", "")
                 
-                _LOGGER.info(
-                    "ℹ️ Device already registered, service: notify.%s",
-                    service_name
-                )
-                return self.json({
-                    "status": "already_exists",
-                    "service": service_name,
-                    "message": f"Device already registered as notify.{service_name}"
-                })
+                if old_device_name != device_name:
+                    # 设备名称变化了，更新 config entry
+                    _LOGGER.info(
+                        "🔄 Device name changed from '%s' to '%s', updating entry",
+                        old_device_name,
+                        device_name
+                    )
+                    
+                    # 更新数据
+                    new_data = dict(entry.data)
+                    new_data["device_name"] = device_name
+                    new_data[CONF_PRODUCTION] = production
+                    
+                    # 更新 config entry（包括标题）
+                    hass.config_entries.async_update_entry(
+                        entry,
+                        title=device_name if device_name else f"Huian ({registration_id[-8:]})",
+                        data=new_data,
+                    )
+                    
+                    # 重新加载 entry 以重新创建 notify 服务
+                    await hass.config_entries.async_reload(entry.entry_id)
+                    
+                    # 生成新的服务名称
+                    import re
+                    if device_name:
+                        new_service_name = device_name.lower()
+                        new_service_name = re.sub(r'\s+', '_', new_service_name)
+                        new_service_name = re.sub(r'[^a-z0-9_]', '', new_service_name)
+                    else:
+                        new_service_name = f"huian_{registration_id[-8:] if len(registration_id) >= 8 else registration_id}"
+                    
+                    _LOGGER.info(
+                        "✅ Device updated successfully: %s -> notify.%s",
+                        device_name,
+                        new_service_name
+                    )
+                    
+                    return self.json({
+                        "status": "updated",
+                        "service": new_service_name,
+                        "message": f"Device updated as notify.{new_service_name}"
+                    })
+                else:
+                    # 设备名称未变化，返回已存在
+                    service_name = hass.data[DOMAIN].get(f"{entry.entry_id}_service_name")
+                    if not service_name:
+                        # 如果没有存储的服务名，根据设备名称生成
+                        service_name = _generate_service_name(hass, entry, device_name, registration_id)
+                    
+                    _LOGGER.info(
+                        "ℹ️ Device already registered, service: notify.%s",
+                        service_name
+                    )
+                    return self.json({
+                        "status": "already_exists",
+                        "service": service_name,
+                        "message": f"Device already registered as notify.{service_name}"
+                    })
         
         # 创建新的 config entry
         try:
