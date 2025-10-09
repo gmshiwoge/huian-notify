@@ -236,7 +236,7 @@ class HuianConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         config_entry: config_entries.ConfigEntry,
     ) -> config_entries.OptionsFlow:
         """Get the options flow for this handler."""
-        return HuianOptionsFlowHandler(config_entry)
+        return HuianOptionsFlowHandler()
 
 
 class HuianOptionsFlowHandler(config_entries.OptionsFlow):
